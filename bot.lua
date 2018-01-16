@@ -150,24 +150,6 @@ meti = redis:scard(Mehdi.."sgps:")
 tdcli.sendText(chat_id, msg.id_, 0, 1, nil, 'امار سوپرگروه ها :  '..meti..':)', 1, 'html')
 end
 -------------------------------------------------------
-if txt:match("^[Ll]eave all$") and is_sudo(msg) then
-local kir = redis:smembers(Mehdi.."sgps:")
-for R = 1, #kir do
-tdcli.changeChatMemberStatus(kir[R], bot_id, 'Left')
-end
-local Kos = redis:smembers(Mehdi.."gps:")
-for M = 1, #Kos do
-tdcli.changeChatMemberStatus(Kos[M], bot_id, 'Left')
-end
-tdcli.sendText(chat_id, msg.id_, 0, 1, nil, 'ربات با موفقیت از گروه ها خارج شد', 1, 'html')
-redis:del(Mehdi.."sgps:")
-end
--------------------------------------------------------
-if txt:match("^[Rr]eset stats$") and is_sudo(msg) then
-redis:del(Mehdi.."sgps:")
-tdcli.sendText(chat_id, msg.id_, 0, 1, nil, 'ریستش کردم داوش', 1, 'html')
-end
--------------------------------------------------------
 if txt:match("^[Pp]ing$") and is_sudo(msg) then
 tdcli.forwardMessages(msg.chat_id_, chat_id,{[0] = msg.id_}, 0)
 end
@@ -261,11 +243,6 @@ local text = [[
 ……………………………………………………
 • دستور امار ربات 
 `stats`
-• دستور ریلود کردن امار ربات
-`reset stats`
-……………………………………………………
-• دستور خارج شدن ربات از همه گروه ها 
-`leave all`
 ……………………………………………………
 • دستور سیو کردن مخاطب 
 `save`
@@ -279,8 +256,8 @@ local text = [[
 • دستور شیر کردن شماره ربات 
 `share`
 ……………………………………………………
-کانال : @TinigerTabchi
-سازنده : @SenatorRom
+کانال📢 : @TinigerTabchi
+سازنده✔️ : @SenatorRom
 ]]
 tdcli.sendText(chat_id, msg.id_, 0, 1, nil, text , 1, 'md')
 end
